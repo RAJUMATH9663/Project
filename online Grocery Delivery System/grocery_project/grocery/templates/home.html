@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Grocery Store</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">Fresh Grocery Store</div>
+
+    <div class="product-container">
+        {% for product in products %}
+        <div class="card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p>₹{{ product.price }}</p>
+            <a href="{% url 'add_to_cart' product.id %}">
+                <button class="btn">Add to Cart</button>
+            </a>
+        </div>
+        {% empty %}
+        <p style="text-align: center; width: 100%; grid-column: 1 / -1;">No products available currently.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
