@@ -1,0 +1,4 @@
+django
+djangorestframework
+google-generativeai
+python-dotenv
