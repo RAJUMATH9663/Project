@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coupon Discount System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        input[type=text] {
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🛍️ Coupon & Discount System</h1>
+
+    {% for product in products %}
+        <div class="product">
+            <h3>{{ product.name }}</h3>
+            <p>Price: ₹{{ product.price }}</p>
+        </div>
+    {% endfor %}
+
+    <h3>Total: ₹{{ total }}</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="coupon" placeholder="Enter Coupon Code">
+        <button type="submit">Apply</button>
+    </form>
+
+    <div class="result">
+        <p>{{ message }}</p>
+        {% if final %}
+            <p>Discount: ₹{{ discount }}</p>
+            <p><strong>Final Price: ₹{{ final }}</strong></p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
